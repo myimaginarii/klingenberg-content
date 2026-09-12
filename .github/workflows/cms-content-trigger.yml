@@ -7,9 +7,10 @@ name: Publish Klingenberg Food content
 # them through its own protected pull request and CI. This file only asks it to start.
 #
 # WHAT THIS FILE MAY DO. One API call: dispatch `cms-publish.yml` on production's
-# `main`, with `source=external`. Every one of those values is a constant written
-# below. Nothing a save carries (a file, a commit message, a branch name) can choose
-# the repository, the workflow, the ref or the input.
+# `main`, with no inputs. The repository, the workflow and the ref are constants written
+# below; which repository the publisher reads is fixed on production's side. Nothing a
+# save carries (a file, a commit message, a branch name) can choose any of them or add
+# an input.
 #
 # WHAT IT HOLDS. `PRODUCTION_DISPATCH_TOKEN`, a fine-grained token limited to
 # `klingenberg-food` with Actions read/write and nothing else. It can ask for a run of
@@ -59,7 +60,7 @@ jobs:
       # `gh` is preinstalled on the runner. The token reaches it only as `GH_TOKEN` in
       # the environment, never in argv, a URL, a file or the log. The explicit check
       # fails with a clear message instead of gh's generic one if the secret is missing.
-      - name: Dispatch cms-publish on main with source=external
+      - name: Dispatch cms-publish on main
         env:
           GH_TOKEN: ${{ secrets.PRODUCTION_DISPATCH_TOKEN }}
         run: |
@@ -67,4 +68,4 @@ jobs:
             echo "::error::PRODUCTION_DISPATCH_TOKEN is not set as an Actions secret in this repository."
             exit 1
           fi
-          gh workflow run cms-publish.yml --repo myimaginarii/klingenberg-food --ref main --raw-field source=external
+          gh workflow run cms-publish.yml --repo myimaginarii/klingenberg-food --ref main
