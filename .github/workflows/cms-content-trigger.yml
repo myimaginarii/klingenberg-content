@@ -1,0 +1,70 @@
+name: Publish Klingenberg Food content
+
+# The doorbell for the production publisher (security migration, Phase S3).
+#
+# Pages CMS saves the restaurant's edits here. Nothing in this repository is deployed:
+# `myimaginarii/klingenberg-food` reads the edits as data, validates them and publishes
+# them through its own protected pull request and CI. This file only asks it to start.
+#
+# WHAT THIS FILE MAY DO. One API call: dispatch `cms-publish.yml` on production's
+# `main`, with `source=external`. Every one of those values is a constant written
+# below. Nothing a save carries (a file, a commit message, a branch name) can choose
+# the repository, the workflow, the ref or the input.
+#
+# WHAT IT HOLDS. `PRODUCTION_DISPATCH_TOKEN`, a fine-grained token limited to
+# `klingenberg-food` with Actions read/write and nothing else. It can ask for a run of
+# a workflow production already has; it cannot read or write production's code, push a
+# branch, change a workflow or reach production's secrets.
+#
+# WHAT IT DELIBERATELY DOES NOT DO. No checkout, no action, no script from this
+# repository: the job never runs a byte of what Pages CMS can write. It forwards no
+# content SHA either. The publisher reads the newest `main` of this repository itself
+# and owns supersession (its own concurrency and stale-snapshot guard).
+
+on:
+  push:
+    branches:
+      - main
+    # The two roots the production composer lets across, and only those. A change to
+    # `.pages.yml`, `README.md` or `.github/` has nothing to publish and starts nothing,
+    # which is also why committing this file does not dispatch production.
+    paths:
+      - 'content/site/**'
+      - 'public/photos/**'
+
+# The repository's own token gets no scope at all. The only credential used is the
+# dispatch token, and only against production.
+permissions: {}
+
+# Several saves in quick succession need only the newest dispatch: the publisher reads
+# the tip when it starts. A newer push cancels an older trigger run. This saves pointless
+# calls; it is not what keeps publishing correct. Production is.
+concurrency:
+  group: production-dispatch
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  dispatch:
+    name: Ask klingenberg-food to publish
+    # Forks never get the secret, but they should not even try.
+    if: github.repository == 'myimaginarii/klingenberg-content'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # `gh` is preinstalled on the runner. The token reaches it only as `GH_TOKEN` in
+      # the environment, never in argv, a URL, a file or the log. The explicit check
+      # fails with a clear message instead of gh's generic one if the secret is missing.
+      - name: Dispatch cms-publish on main with source=external
+        env:
+          GH_TOKEN: ${{ secrets.PRODUCTION_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::PRODUCTION_DISPATCH_TOKEN is not set as an Actions secret in this repository."
+            exit 1
+          fi
+          gh workflow run cms-publish.yml --repo myimaginarii/klingenberg-food --ref main --raw-field source=external
