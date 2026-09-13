@@ -34,6 +34,9 @@ Nu ser du en menu i venstre side med hjemmesidens dele:
 - **Kontakt og åbningstider** → Kontaktoplysninger, Åbningstider
 - **Udmærkelse** (kan kun læses, ikke rettes)
 
+Du kan ikke ødelægge selve hjemmesiden ved at rette indhold. Hvis en ændring ikke kan
+bruges, bliver den ikke udgivet.
+
 ---
 
 ## 2. Sådan ændrer du noget
@@ -42,14 +45,15 @@ Nu ser du en menu i venstre side med hjemmesidens dele:
 2. Ret teksten i felterne. Lister (fx retter eller afsnit) er foldet sammen. Klik på en
    linje for at folde den ud.
 3. Tryk **Save** øverst.
-4. Vent. Hjemmesiden opdaterer sig selv, men det tager lidt tid: som regel nogle
-   minutter, nogle gange op mod en halv time. Du behøver ikke gøre mere.
+4. Efter du har trykket **Save**, bliver ændringen normalt synlig på hjemmesiden efter
+   nogle få minutter. Er den stadig ikke kommet frem efter 15–30 minutter, så skriv til
+   Hans.
 
 Du må gerne gemme flere gange efter hinanden. Det er altid den nyeste gemning, der
 kommer på hjemmesiden.
 
-Har du skrevet noget, hjemmesiden ikke kan bruge (fx bogstaver i et prisfelt), bliver
-ændringen holdt tilbage, og Hans får automatisk besked.
+Hvis en ændring ikke kan udgives, bliver den seneste fungerende version af hjemmesiden
+stående. Dukker din ændring ikke op efter lidt tid, så skriv til Hans.
 
 ---
 
