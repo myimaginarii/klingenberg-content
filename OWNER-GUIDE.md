@@ -1,20 +1,27 @@
 # Sådan retter du hjemmesiden
 
-En kort guide til Klingenberg Food. Alt det, I selv kan rette på hjemmesiden, retter I
-ét sted: i redigeringen på **app.pagescms.org**. I skal ikke bruge andre programmer.
+Alt det, I selv kan rette på hjemmesiden, retter I på **app.pagescms.org**.
 
 Knapperne i selve redigeringen er på engelsk (fx **Save**), men alle felter har danske
 navne, og det er dem, denne guide bruger.
 
----
+## Første gang
 
-## 1. Sådan åbner du redigeringen
+Hans skal først give din e-mailadresse adgang til hjemmesiden.
 
-1. Gå til **app.pagescms.org** i din browser.
-2. Skriv din e-mail i feltet **Email**, og tryk **Continue with email**.
-   Du får en 6-cifret kode på mail. Skriv koden, og tryk **Verify code**.
-   (Har du en GitHub-konto, kan du i stedet trykke **Sign in with GitHub**.)
-3. Vælg **klingenberg-content**, hvis du bliver bedt om at vælge på en liste.
+Du skal bruge din egen e-mailadresse. Du skal ikke bruge Hans' login, og du behøver ikke
+en GitHub-konto.
+
+## Sådan logger du ind
+
+1. Gå til **app.pagescms.org**.
+2. Skriv den e-mailadresse, Hans har givet adgang til.
+3. Tryk **Continue with email**.
+4. Du får en 6-cifret kode på mail.
+5. Skriv koden, og tryk **Verify code**.
+6. Vælg **klingenberg-content**, hvis du bliver bedt om det.
+
+Hvis du ikke kan komme ind, så spørg Hans, om din e-mailadresse er blevet tilføjet.
 
 Nu ser du en menu i venstre side med hjemmesidens dele:
 
