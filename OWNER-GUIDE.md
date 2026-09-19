@@ -19,7 +19,10 @@ en GitHub-konto.
 3. Tryk **Continue with email**.
 4. Du får en 6-cifret kode på mail.
 5. Skriv koden, og tryk **Verify code**.
-6. Vælg **klingenberg-content**, hvis du bliver bedt om det.
+6. Vælg altid **klingenberg-content**. Det er her hjemmesidens indhold redigeres. Vælg
+   ikke **klingenberg-food**.
+
+Bruger du et bogmærke, skal det pege på **klingenberg-content**.
 
 Hvis du ikke kan komme ind, så spørg Hans, om din e-mailadresse er blevet tilføjet.
 
@@ -192,6 +195,8 @@ Ret teksten, og tryk **Save**.
 
 ## 4. Hvis noget går galt
 
+- Ser du "File not found", fx når du åbner **Forside**, så tjek først, at du har åbnet
+  **klingenberg-content** og ikke **klingenberg-food**.
 - Genindlæs siden i browseren (F5), og prøv igen.
 - Kan du ikke se din ændring på hjemmesiden endnu, så vent lidt. Det kan tage op mod en
   halv time.
